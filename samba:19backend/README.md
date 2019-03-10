@@ -66,12 +66,11 @@ Per tal de tenir la configuració del samba amb LDAP com a backend correctament,
 ```
 docker network create netsamba
 
-docker run --rm --name server --hostname server --network netsamba -d danicano/ldapserver:18samba
-
-docker run --rm --name host --hostname host --network netsamba --privileged -it danicano/hostpam:18samba
+docker run --rm --name server --hostname server --network netsamba -d danicano/ldapserver:backend
 
 docker run --rm --name samba --hostname samba --network netsamba --privileged -it danicano/samba:19backend
 
+docker run --rm --name host --hostname host --network netsamba --privileged -it danicano/hostpam:18samba
 ```
 
 
@@ -294,21 +293,13 @@ vladimir:11011:vladimir putin
 root:0:root
 nobody:99:Nobody
 lila:1000:
+roc:1001:
+patipla:1002:
+pla:1003:
 
 
 [root@samba docker]# ldapsearch -x -LLL 
 ...
-dn: cn=Print Operators,ou=grups,dc=edt,dc=org
-objectClass: top
-objectClass: posixGroup
-objectClass: sambaGroupMapping
-cn: Print Operators
-gidNumber: 550
-description: Netbios Domain Print Operators
-sambaSID: S-1-5-32-550
-sambaGroupType: 4
-displayName: Print Operators
-
 dn: cn=Backup Operators,ou=grups,dc=edt,dc=org
 objectClass: top
 objectClass: posixGroup

@@ -77,6 +77,6 @@ memberUid: jorge
 #### Execució
 
 ```
-$ docker run --rm --name server -h server --net ldapnet -d danicano/ldapserver:18samba
+$ docker run --rm --name server -h server --net ldapnet -d danicano/ldapserver:backend
 ```
 
